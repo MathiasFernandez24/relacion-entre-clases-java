@@ -1,9 +1,13 @@
 package pkg08.relacion.entre.clases;
 
+import entidades.Carta;
 import entidades.Perro;
 import entidades.Persona;
 import entidades.Revolver;
+import java.util.ArrayList;
 import java.util.HashMap;
+import servicios.BarajaService;
+import servicios.PerroYPersonaService;
 import servicios.RevolverService;
 
 /**
@@ -18,7 +22,9 @@ public class RelacionEntreClases {
     public static void main(String[] args) {
         //ejercicio1();
         //ejercicio2();
-        ejercicioExtra3();
+        //ejercicio3();
+        ejercicioExtra1();
+        //ejercicioExtra3();
     }
 
     public static void ejercicio1() {
@@ -64,6 +70,46 @@ public class RelacionEntreClases {
         sv.gatillar(arma);
         sv.toString(arma);
 
+    }
+
+    public static void ejercicio3() {
+        BarajaService sv = new BarajaService();
+        ArrayList<Carta> mazo = sv.llenarBaraja();
+        ArrayList<Carta> mazoDescarte = new ArrayList();
+
+        sv.mostrarBaraja(mazo);
+        sv.mezclarBaraja(mazo);
+        System.out.println("---------------");
+        sv.mostrarBaraja(mazo);
+
+        sv.sacarCarta(mazo, mazoDescarte);
+        sv.sacarCarta(mazo, mazoDescarte);
+        sv.sacarCarta(mazo, mazoDescarte);
+        sv.sacarCarta(mazo, mazoDescarte);
+
+        sv.mostrarBaraja(mazo);
+        System.out.println("-------------------");
+        sv.mostrarBaraja(mazoDescarte);
+
+        sv.cartasDisponibles(mazo);
+        sv.darCartas(mazo, mazoDescarte);
+        sv.cartasDisponibles(mazo);
+        sv.cartasMonton(mazoDescarte);
+        System.out.println("----");
+        sv.mostrarBaraja(mazo);
+    }
+    
+    public static void ejercicioExtra1(){
+        PerroYPersonaService sv = new PerroYPersonaService();
+        ArrayList<Perro> listaPerros = sv.llenarListaPerros();
+        ArrayList<Perro> listaPerrosAdoptados = new ArrayList();
+        ArrayList<Persona> listaPersonas = sv.llenarListaPersonas();
+        
+        sv.adoptar(listaPerros, listaPerrosAdoptados, listaPersonas);
+        
+        System.out.println(listaPerrosAdoptados);
+        System.out.println(listaPersonas);
+        
     }
 
     public static void ejercicioExtra3() {
