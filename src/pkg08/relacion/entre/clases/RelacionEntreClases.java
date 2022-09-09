@@ -1,12 +1,15 @@
 package pkg08.relacion.entre.clases;
 
 import entidades.Carta;
+import entidades.Espectador;
 import entidades.Perro;
 import entidades.Persona;
 import entidades.Revolver;
+import entidades.Sala;
 import java.util.ArrayList;
 import java.util.HashMap;
 import servicios.BarajaService;
+import servicios.CineService;
 import servicios.PerroYPersonaService;
 import servicios.RevolverService;
 
@@ -23,8 +26,8 @@ public class RelacionEntreClases {
         //ejercicio1();
         //ejercicio2();
         //ejercicio3();
-        ejercicioExtra1();
-        //ejercicioExtra3();
+        //ejercicioExtra1();
+        ejercicioExtra2();
     }
 
     public static void ejercicio1() {
@@ -112,14 +115,25 @@ public class RelacionEntreClases {
         
     }
 
-    public static void ejercicioExtra3() {
-
-        HashMap<String, Boolean> sala = new HashMap();
-        llenar(sala);
-        System.out.println("");
-        mostrar(sala);
-
-        System.out.println(sala);
+    public static void ejercicioExtra2() {
+        CineService sv = new CineService();
+        ArrayList<Espectador> listaEspectadores = sv.muchosEspectadores();
+        Sala sala1 = new Sala();
+        sala1.setHashAsientos(sv.crearHashMapAsientos());
+        sv.mostrarOrdenadoHashMapAsientos(sala1.getHashAsientos());
+        
+//        sala1.getHashAsientos()
+        System.out.println(sala1.getHashAsientos().get("A"));
+        
+        
+        
+        
+//        HashMap<String, Boolean> sala = new HashMap();
+//        llenar(sala);
+//        System.out.println("");
+//        mostrar(sala);
+//
+//        System.out.println(sala);
 
     }
 
