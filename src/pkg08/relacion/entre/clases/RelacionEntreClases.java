@@ -1,12 +1,16 @@
 package pkg08.relacion.entre.clases;
 
+import entidades.Alumno;
 import entidades.Carta;
 import entidades.Espectador;
+import entidades.Pelicula;
 import entidades.Perro;
 import entidades.Persona;
 import entidades.Revolver;
 import entidades.Sala;
+import entidades.Simulador;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import servicios.BarajaService;
 import servicios.CineService;
@@ -27,7 +31,8 @@ public class RelacionEntreClases {
         //ejercicio2();
         //ejercicio3();
         //ejercicioExtra1();
-        ejercicioExtra2();
+        //ejercicioExtra2();
+        ejercicioExtra4();
     }
 
     public static void ejercicio1() {
@@ -101,102 +106,39 @@ public class RelacionEntreClases {
         System.out.println("----");
         sv.mostrarBaraja(mazo);
     }
-    
-    public static void ejercicioExtra1(){
+
+    public static void ejercicioExtra1() {
         PerroYPersonaService sv = new PerroYPersonaService();
         ArrayList<Perro> listaPerros = sv.llenarListaPerros();
         ArrayList<Perro> listaPerrosAdoptados = new ArrayList();
         ArrayList<Persona> listaPersonas = sv.llenarListaPersonas();
-        
+
         sv.adoptar(listaPerros, listaPerrosAdoptados, listaPersonas);
-        
+
         System.out.println(listaPerrosAdoptados);
         System.out.println(listaPersonas);
-        
+
     }
 
     public static void ejercicioExtra2() {
         CineService sv = new CineService();
         ArrayList<Espectador> listaEspectadores = sv.muchosEspectadores();
         Sala sala1 = new Sala();
+        sala1.setPeli(new Pelicula());
         sala1.setHashAsientos(sv.crearHashMapAsientos());
+
         sv.mostrarOrdenadoHashMapAsientos(sala1.getHashAsientos());
-        
-//        sala1.getHashAsientos()
-        System.out.println(sala1.getHashAsientos().get("A"));
-        
-        
-        
-        
-//        HashMap<String, Boolean> sala = new HashMap();
-//        llenar(sala);
-//        System.out.println("");
-//        mostrar(sala);
-//
-//        System.out.println(sala);
+        sv.llenarSalaDeEspectadores(listaEspectadores, sala1);
+        sv.mostrarOrdenadoHashMapAsientos(sala1.getHashAsientos());
 
+        //muestra el contenido de la silla 1A, para corroborar datos
+        System.out.println(sala1.getHashAsientos().get("1A"));
     }
 
-    public static void mostrar(HashMap<String, Boolean> sala) {
-        String llave = "";
-        for (int i = 8; i > 0; i--) {
-            for (int j = 0; j < 6; j++) {
-                switch (j) {
-                    case 0:
-                        llave = i + "A";
-                        break;
-                    case 1:
-                        llave = i + "B";
-                        break;
-                    case 2:
-                        llave = i + "C";
-                        break;
-                    case 3:
-                        llave = i + "D";
-                        break;
-                    case 4:
-                        llave = i + "E";
-                        break;
-                    case 5:
-                        llave = i + "F";
-                        break;
-                }
-                System.out.print(sala.get(llave) + " ");
-            }
-
-            System.out.println(" ");
-        }
+    public static void ejercicioExtra4() {
+        Simulador sv = new Simulador();
+        ArrayList<Alumno> listaAlumnos = sv.generarListaAlumnos();
+        listaAlumnos.forEach((a) -> System.out.println(a));
+        sv.votacion(listaAlumnos);
     }
-
-    public static void llenar(HashMap<String, Boolean> sala) {
-        String llave = "";
-        for (int i = 8; i > 0; i--) {
-            for (int j = 0; j < 6; j++) {
-                switch (j) {
-                    case 0:
-                        llave = i + "A";
-                        break;
-                    case 1:
-                        llave = i + "B";
-                        break;
-                    case 2:
-                        llave = i + "C";
-                        break;
-                    case 3:
-                        llave = i + "D";
-                        break;
-                    case 4:
-                        llave = i + "E";
-                        break;
-                    case 5:
-                        llave = i + "F";
-                        break;
-                }
-                System.out.print(llave + " ");
-                sala.put(llave, false);
-            }
-            System.out.println("");
-        }
-    }
-
 }

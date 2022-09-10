@@ -6,7 +6,7 @@ package entidades;
  */
 public class Pelicula {
     private String titulo, director;
-    private int duracionMinutos, edadMinima;
+    private int duracionMinutos=150, edadMinima=21;
 
     public Pelicula() {
     }
